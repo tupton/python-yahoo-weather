@@ -24,8 +24,46 @@ Options:
   -l, --location           give the location of the weather
   -v, --verbose            print the weather section headers
 
-Try 
+Example Usage
 
-$ weather.py --help
+Default output
+$ weather.py 24060
+25F | Partly Cloudy
 
-for more information regarding options.
+Metric units
+$ weather.py -m 24060
+-4C | Partly Cloudy
+
+With two days' forecast
+$ weather.py -lf2 24060
+Blacksburg VA
+
+25F | Partly Cloudy
+
+  17 Jan 2009
+    High: 30F
+    Low: 22F
+    Condition: Partly Cloudy
+  18 Jan 2009
+    High: 39F
+    Low: 25F
+    Condition: PM Snow Showers
+
+With headers
+$ weather.py -lvf2 24060
+Location:
+Blacksburg VA
+
+Current conditions:
+25F | Partly Cloudy
+
+Forecast:
+  17 Jan 2009
+    High: 30F
+    Low: 22F
+    Condition: Partly Cloudy
+  18 Jan 2009
+    High: 39F
+    Low: 25F
+    Condition: PM Snow Showers
+
