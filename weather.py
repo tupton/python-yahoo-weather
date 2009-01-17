@@ -8,6 +8,8 @@ with contributions from Chris Lasher (http://igotgenes.blogspot.com/).
 
 This code is licensed under a BY-NC-SA Creative Commons license.
 http://creativecommons.org/licenses/by-nc-sa/3.0/us/
+
+See http://thomas.fiveuptons.com/?p=202 for more information.
 """
 
 import sys
