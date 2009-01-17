@@ -12,6 +12,18 @@ See http://thomas.fiveuptons.com/?p=202 for more information.
 
 Usage: weather.py [options] location_code 
 
+Arguments:
+LOCATION_CODE: The LOCATION_CODE for the region of interest.
+See http://developer.yahoo.com/weather/#req
+
+Options:
+  -h, --help               show this help message and exit
+  -c, --nocurr             suppress reporting the current weather conditions
+  -m, --metric             show the temperature in metric units (C)
+  -f DAYS, --forecast=DAYS show the forecast for DAYS days
+  -l, --location           give the location of the weather
+  -v, --verbose            print the weather section headers
+
 Try 
 
 $ weather.py --help
