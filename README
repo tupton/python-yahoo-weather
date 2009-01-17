@@ -13,8 +13,8 @@ See http://thomas.fiveuptons.com/?p=202 for more information.
 Usage: weather.py [options] location_code 
 
 Arguments:
-LOCATION_CODE: The LOCATION_CODE for the region of interest.
-See http://developer.yahoo.com/weather/#req
+  LOCATION_CODE: The LOCATION_CODE for the region of interest.
+                 See http://developer.yahoo.com/weather/#req
 
 Options:
   -h, --help               show this help message and exit
