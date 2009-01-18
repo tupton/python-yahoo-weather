@@ -115,7 +115,7 @@ def create_report(weather_data, options):
             report.append("Current conditions:")
 
         # Add the current weather.
-        curr_str = "%(current_temp)s%(units)s | %(current_condition)s\n" % weather_data
+        curr_str = "%(current_temp)s%(units)s and %(current_condition)s\n" % weather_data
         report.append(curr_str)
 
     if (options.forecast > 0):
