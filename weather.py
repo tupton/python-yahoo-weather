@@ -161,7 +161,8 @@ def create_cli_parser():
     
     # Add the CLI options
     cli_parser.add_option('-c', '--nocurr', action='store_true',
-        help="suppress reporting the current weather conditions"
+        help="suppress reporting the current weather conditions",
+        default=False
     )
 
     cli_parser.add_option('-d', '--delim', action='store', type='string',
@@ -175,7 +176,9 @@ def create_cli_parser():
     )
     
     cli_parser.add_option('-l', '--location', action='store_true',
-        help="give the location of the weather"
+        help="print the location of the weather",
+        default=False
+
     )
     
     cli_parser.add_option('-m', '--metric', action='store_true',
@@ -184,7 +187,8 @@ def create_cli_parser():
     )
     
     cli_parser.add_option('-v', '--verbose', action='store_true',
-        help="print the weather section headers"
+        help="print the weather section headers",
+        default=False
     )
     
     return cli_parser
