@@ -205,13 +205,10 @@ def main(argv):
     if len(args) < 1:
         cli_parser.error("Not enough arguments supplied.")
 
-    # Check the location code
+    # Get the location code
     location_code = args[0]
     
-    # Check for a US location.
-#    if len(location_code) != 5 or not location_code.isdigit():
-#        cli_parser.error("ZIP code must be 5 digits")
-    
+    # Limit the requested forecast days.
     if opts.forecast > DAYS_LIMIT or opts.forecast < 0:
         cli_parser.error("Days to forecast must be between 0 and %d" % DAYS_LIMIT)
 
