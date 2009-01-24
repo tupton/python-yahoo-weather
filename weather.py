@@ -115,7 +115,9 @@ def create_report(weather_data, options):
             report.append("Current conditions:")
 
         # Add the current weather.
-        curr_str = "%(current_temp)s%(units)s and %(current_condition)s\n" % weather_data
+        curr_str = "%(current_temp)s%(units)s" % weather_data
+        curr_str = curr_str + "%s" % options.delim
+        curr_str = curr_str + "%(current_condition)s\n" % weather_data
         report.append(curr_str)
 
     if (options.forecast > 0):
@@ -132,7 +134,7 @@ def create_report(weather_data, options):
   %(date)s
     High: %(high)s%(units)s
     Low: %(low)s%(units)s
-    Condition: %(condition)s""" % forecast
+    Conditions: %(condition)s""" % forecast
 
             report.append(forecast_str)
 
@@ -161,25 +163,30 @@ def create_cli_parser():
     cli_parser.add_option('-c', '--nocurr', action='store_true',
         help="suppress reporting the current weather conditions"
     )
-    
-    cli_parser.add_option('-m', '--metric', action='store_true',
-        help="show the temperature in metric units (C)"
+
+    cli_parser.add_option('-d', '--delim', action='store', type='string',
+        help="use the given string as a delimiter between the temperature and the conditions",
+        default=" and "
     )
 
     cli_parser.add_option('-f', '--forecast', action='store', type='int',
-        help="show the forecast for DAYS days", metavar="DAYS")
+        help="show the forecast for DAYS days",
+        default=0
+    )
     
     cli_parser.add_option('-l', '--location', action='store_true',
         help="give the location of the weather"
+    )
+    
+    cli_parser.add_option('-m', '--metric', action='store_true',
+        help="show the temperature in metric units (C)",
+        default=False
     )
     
     cli_parser.add_option('-v', '--verbose', action='store_true',
         help="print the weather section headers"
     )
     
-    # Set the default number of days to forecast to 0
-    cli_parser.set_defaults(forecast=0, metric=False)
-
     return cli_parser
 
 def main(argv):
