@@ -28,17 +28,21 @@ Example Usage
 
 Default output
 $ weather.py 24060
-25F | Partly Cloudy
+25F and Partly Cloudy
 
 Metric units
 $ weather.py -m 24060
--4C | Partly Cloudy
+-4C and Partly Cloudy
+
+Different delimiter
+$ weather.py -d " / " 24060
+50F / Mostly Cloudy
 
 With two days' forecast
 $ weather.py -lf2 24060
 Blacksburg VA
 
-25F | Partly Cloudy
+25F and Partly Cloudy
 
   17 Jan 2009
     High: 30F
@@ -55,7 +59,7 @@ Location:
 Blacksburg VA
 
 Current conditions:
-25F | Partly Cloudy
+25F and Partly Cloudy
 
 Forecast:
   17 Jan 2009
