@@ -9,7 +9,7 @@ with contributions from Chris Lasher (http://igotgenes.blogspot.com/).
 This code is licensed under a BY-NC-SA Creative Commons license.
 http://creativecommons.org/licenses/by-nc-sa/3.0/us/
 
-See http://thomas.fiveuptons.com/?p=202 for more information.
+See http://www.thomasupton.com/blog/?p=202 for more information.
 """
 
 import sys
@@ -17,7 +17,7 @@ import urllib
 from optparse import OptionParser
 from xml.dom.minidom import parse
 
-# Yahoo!'s limit on the number of days they will forecast for
+# Yahoo!'s limit on the number of days they will forecast
 DAYS_LIMIT = 2
 WEATHER_URL = 'http://xml.weather.yahoo.com/forecastrss?p=%s'
 METRIC_PARAMETER = '&u=c'
@@ -29,7 +29,7 @@ def get_weather(location_code, opts):
 
     :Parameters:
     -`location_code`: A five digit US zip code.
-    -`days`: number of days to obtain forecasts for
+    -`days`: number of days to obtain forecasts
 
     :Returns:
     -`weather_data`: a dictionary of weather data
@@ -217,7 +217,6 @@ def main(argv):
 
     # Create the report.
     report = create_report(weather, opts)
-
     print report
 
 if __name__ == "__main__":
