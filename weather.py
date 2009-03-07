@@ -1,9 +1,9 @@
-#! /usr/bin/python
+#! /usr/bin/env python
 
 """
-Fetches weather reports from Yahoo!
+Fetches weather reports from Yahoo! Weather
 
-Written by Thomas Upton (http://thomas.fiveuptons.com/),
+Written by Thomas Upton (http://www.thomasupton.com/),
 with contributions from Chris Lasher (http://igotgenes.blogspot.com/).
 
 This code is licensed under a BY-NC-SA Creative Commons license.
