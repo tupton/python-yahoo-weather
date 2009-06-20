@@ -115,9 +115,16 @@ def create_report(weather_data, options):
             report.append("Current conditions:")
 
         # Add the current weather.
-        curr_str = "%(current_temp)s%(units)s" % weather_data
-        curr_str = curr_str + options.delim.decode('string_escape')
-        curr_str = curr_str + "%(current_condition)s\n" % weather_data
+        curr_str = ""
+        if (not options.conditions):
+            curr_str = curr_str + "%(current_temp)s%(units)s" % weather_data
+
+        if (not options.conditions and not options.temperature):
+            curr_str = curr_str + options.delim.decode('string_escape')
+
+        if (not options.temperature):
+            curr_str = curr_str + "%(current_condition)s\n" % weather_data
+
         report.append(curr_str)
 
     if (options.forecast > 0):
@@ -160,7 +167,7 @@ def create_cli_parser():
     cli_parser = OptionParser(usage)
     
     # Add the CLI options
-    cli_parser.add_option('-c', '--nocurr', action='store_true',
+    cli_parser.add_option('-n', '--nocurr', action='store_true',
         help="suppress reporting the current weather conditions",
         default=False
     )
@@ -190,6 +197,16 @@ def create_cli_parser():
         help="print the weather section headers",
         default=False
     )
+
+    cli_parser.add_option('-t', '--temperature', action="store_true",
+        help="print only the current temperature",
+        default=False
+    )
+
+    cli_parser.add_option('-c', '--conditions', action="store_true",
+        help="print only the current conditions",
+        default=False
+    )
     
     return cli_parser
 
@@ -217,7 +234,7 @@ def main(argv):
 
     # Create the report.
     report = create_report(weather, opts)
-    print report
+    print(report)
 
 if __name__ == "__main__":
     main(sys.argv[1:])
