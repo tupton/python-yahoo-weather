@@ -42,7 +42,10 @@ def get_weather(location_code, options):
         url = url + METRIC_PARAMETER
 
     # Parse the XML feed.
-    dom = parse(urllib.urlopen(url))
+    try:
+        dom = parse(urllib.urlopen(url))
+    except:
+        return None
 
     # Get the units of the current feed.
     yunits = dom.getElementsByTagNameNS(WEATHER_NS, 'units')[0]
@@ -97,6 +100,8 @@ def create_report(weather_data, options):
     -`report_str`: a formatted string reporting weather
 
     """
+    if weather_data == None:
+        return None
 
     report = []
     
@@ -207,6 +212,11 @@ def create_cli_parser():
         help="print only the current conditions",
         default=False
     )
+
+    cli_parser.add_option('-o', '--output', action='store',
+        help="print the weather conditions to a specified file name",
+        default=""
+    )
     
     return cli_parser
 
@@ -234,7 +244,21 @@ def main(argv):
 
     # Create the report.
     report = create_report(weather, opts)
-    print(report)
+
+    if report == None:
+        return -1
+    else:
+        if opts.output == '':
+            print(report)
+        else:
+            # Write the weather conditions to a file
+            try:
+                file = open(opts.output, "w")
+                file.writelines(report)
+                file.close
+            except:
+                print("Unable to open file " + opts.output + " for output")
+
 
 if __name__ == "__main__":
     main(sys.argv[1:])
