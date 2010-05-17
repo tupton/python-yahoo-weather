@@ -121,8 +121,9 @@ def create_report(weather_data, options):
 
         # Add the current weather.
         curr_str = ""
+        degree = u"\xb0"
         if (not options.conditions):
-            curr_str = curr_str + "%(current_temp)s%(units)s" % weather_data
+            curr_str = curr_str + "%(current_temp)s" % weather_data + degree + "%(units)s" % weather_data
 
         if (not options.conditions and not options.temperature):
             curr_str = curr_str + options.delim.decode('string_escape')
