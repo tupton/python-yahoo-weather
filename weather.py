@@ -121,7 +121,8 @@ def create_report(weather_data, options):
 
         # Add the current weather.
         curr_str = ""
-        degree = u"\xb0"
+        #degree = u"\xb0"
+        degree = ""
         if (not options.conditions):
             curr_str = curr_str + "%(current_temp)s" % weather_data + degree + "%(units)s" % weather_data
 
