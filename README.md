@@ -1,6 +1,6 @@
 # Python Yahoo Weather
 
-Fetches weather reports from [Yahoo! Weather][yw]
+Fetches weather reports from [Yahoo! Weather][yw].
 
 [yw]: http://weather.yahoo.com/
 
