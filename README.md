@@ -5,7 +5,7 @@ Fetches weather reports from Yahoo!
 Written by [Thomas Upton][tu] with contributions from Chris Lasher[cl].
 
 [tu]: http://www.thomasupton.com/
-[cl]: http://igotgenes.blogspot.com/)
+[cl]: http://igotgenes.blogspot.com/
 
 This code is licensed under a [BY-NC-SA Creative Commons license][cc].
 
