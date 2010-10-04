@@ -1,6 +1,8 @@
 # Python Yahoo Weather
 
-Fetches weather reports from Yahoo!
+Fetches weather reports from [Yahoo][yw]!
+
+[yw]: http://weather.yahoo.com/
 
 Written by [Thomas Upton][tu] with contributions from [Chris Lasher][cl].
 
@@ -15,12 +17,12 @@ See [the blog post][blog] for more information.
 
 [blog]: http://www.thomasupton.com/blog/?p=202
 
-Usage: weather.py [options] location_code 
+Usage: `weather.py [options] location_code` 
 
     $ weather.py --help
 for options and their descriptions.
 
-Weather data can be printed to an output file withe the `--output` option.
+Weather data can be printed to an output file with the `--output` option.
 
     $ weather.py 24060 --output='weather.txt'
 
