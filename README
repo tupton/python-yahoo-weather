@@ -1,14 +1,19 @@
-Python Yahoo Weather
+# Python Yahoo Weather
 
 Fetches weather reports from Yahoo!
 
-Written by Thomas Upton (http://www.thomasupton.com/),
-with contributions from Chris Lasher (http://igotgenes.blogspot.com/).
+Written by [Thomas Upton][tu] with contributions from Chris Lasher.
 
-This code is licensed under a BY-NC-SA Creative Commons license.
-http://creativecommons.org/licenses/by-nc-sa/3.0/us/
+[tu]: http://www.thomasupton.com/
+[cl]: http://igotgenes.blogspot.com/)
 
-See http://www.thomasupton.com/blog/?p=202 for more information.
+This code is licensed under a [BY-NC-SA Creative Commons license][cc].
+
+[cc]: http://creativecommons.org/licenses/by-nc-sa/3.0/us/
+
+See [the blog post][blog] for more information.
+
+[blog]: http://www.thomasupton.com/blog/?p=202
 
 Usage: weather.py [options] location_code 
 
@@ -27,22 +32,21 @@ could not be loaded, the previous contents of the file are shown.
 
 $ weather.py 24060 --output='weather.txt' && cat weather.txt
 
-Example Usage
--------------
+## Example Usage
 
-Default output
+### Default output
 $ weather.py 24060
 25F and Partly Cloudy
 
-Metric units
+### Metric units
 $ weather.py -m 24060
 -4C and Partly Cloudy
 
-Different delimiter
+### Different delimiter
 $ weather.py -d " / " 24060
 50F / Mostly Cloudy
 
-With two days' forecast
+### With two days' forecast
 $ weather.py -lf2 24060
 Blacksburg VA
 
@@ -57,7 +61,7 @@ Blacksburg VA
     Low: 25F
     Condition: PM Snow Showers
 
-With headers
+### With headers
 $ weather.py -lvf2 24060
 Location:
 Blacksburg VA
