@@ -2,7 +2,7 @@
 
 Fetches weather reports from Yahoo!
 
-Written by [Thomas Upton][tu] with contributions from Chris Lasher[cl].
+Written by [Thomas Upton][tu] with contributions from [Chris Lasher][cl].
 
 [tu]: http://www.thomasupton.com/
 [cl]: http://igotgenes.blogspot.com/
