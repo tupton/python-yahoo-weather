@@ -255,9 +255,8 @@ def main(argv):
         else:
             # Write the weather conditions to a file
             try:
-                file = open(opts.output, "w")
-                file.writelines(report)
-                file.close
+                with open(opts.output, "w") as output_file:
+                    output_file.writelines(report)
             except:
                 print("Unable to open file " + opts.output + " for output")
 
