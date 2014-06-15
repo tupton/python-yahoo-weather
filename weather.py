@@ -53,7 +53,7 @@ def get_weather(location_code, options):
     # Get the location of the specified location code.
     ylocation = dom.getElementsByTagNameNS(WEATHER_NS, 'location')[0]
 
-    # Get the currrent conditions.
+    # Get the current conditions.
     ycondition = dom.getElementsByTagNameNS(WEATHER_NS, 'condition')[0]
 
     # Hold the forecast in a hash.
