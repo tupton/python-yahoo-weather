@@ -15,7 +15,7 @@ This code is licensed under a [BY-NC-SA Creative Commons license][cc].
 
 See [the blog post][blog] for more information.
 
-[blog]: http://www.thomasupton.com/blog/?p=202
+[blog]: http://blog.thomasupton.com/2008/04/yahoo-weather-feeds-with-python/
 
 Usage: `weather.py [options] location_code` 
 
