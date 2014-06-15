@@ -44,7 +44,7 @@ def get_weather(location_code, options):
     # Parse the XML feed.
     try:
         dom = parse(urllib.urlopen(url))
-    except:
+    except Exception:
         return None
 
     # Get the units of the current feed.
@@ -113,7 +113,7 @@ def create_report(weather_data, options):
         location_str = "%(city)s %(region)s\n" % weather_data
         report.append(location_str)
 
-    if (not options.nocurr):
+    if not options.nocurr:
         if options.verbose:
             # Add current conditions header.
             report.append("Current conditions:")
@@ -122,18 +122,19 @@ def create_report(weather_data, options):
         curr_str = ""
         # degree = u"\xb0"
         degree = ""
-        if (not options.conditions):
-            curr_str = curr_str + "%(current_temp)s" % weather_data + degree + "%(units)s" % weather_data
+        if not options.conditions:
+            curr_str = curr_str + "%(current_temp)s" % weather_data + degree + \
+                       "%(units)s" % weather_data
 
-        if (not options.conditions and not options.temperature):
+        if not options.conditions and not options.temperature:
             curr_str = curr_str + options.delim.decode('string_escape')
 
-        if (not options.temperature):
+        if not options.temperature:
             curr_str = curr_str + "%(current_condition)s\n" % weather_data
 
         report.append(curr_str)
 
-    if (options.forecast > 0):
+    if options.forecast > 0:
         if options.verbose:
             # Add the forecast header.
             report.append("Forecast:")
@@ -212,6 +213,9 @@ def create_cli_parser():
     return cli_parser
 
 def main(argv):
+    """
+    Main entry point of this file. Parses argv, gets weather, then emits output
+    """
 
     # Create the command line parser.
     cli_parser = create_cli_parser()
@@ -228,7 +232,8 @@ def main(argv):
 
     # Limit the requested forecast days.
     if opts.forecast > DAYS_LIMIT or opts.forecast < 0:
-        cli_parser.error("Days to forecast must be between 0 and %d" % DAYS_LIMIT)
+        cli_parser.error("Days to forecast must be between 0 and %d"
+                         % DAYS_LIMIT)
 
     # Get the weather.
     weather = get_weather(location_code, opts)
@@ -240,15 +245,14 @@ def main(argv):
         return -1
     else:
         if opts.output == '':
-            print(report)
+            print report
         else:
             # Write the weather conditions to a file
             try:
-                file = open(opts.output, "w")
-                file.writelines(report)
-                file.close
-            except:
-                print("Unable to open file " + opts.output + " for output")
+                with open(opts.output, "w") as output_file:
+                    output_file.writelines(report)
+            except IOError:
+                print "Unable to open file " + opts.output + " for output"
 
 
 if __name__ == "__main__":
