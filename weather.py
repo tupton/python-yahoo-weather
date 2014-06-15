@@ -14,7 +14,7 @@ See http://www.thomasupton.com/blog/?p=202 for more information.
 
 import sys
 import urllib
-from optparse import OptionParser
+from argparse import ArgumentParser
 from xml.dom.minidom import parse
 
 # Yahoo!'s limit on the number of days they will forecast
@@ -161,52 +161,45 @@ def create_cli_parser():
     Creates a command line interface parser.
     """
 
-    usage = (
-            "%prog [options] location_code",
-            __doc__,
-            """Arguments:
-    LOCATION_CODE: The LOCATION_CODE for the region of interest.
-                   See http://developer.yahoo.com/weather/#req"""
-    )
+    cli_parser = ArgumentParser(description=__doc__)
 
-    usage = "\n\n".join(usage)
-
-    cli_parser = OptionParser(usage)
+    cli_parser.add_argument('location_code',
+        help="The location code for the region you want to retrieve weather for. See http://developer.yahoo.com/weather/#req""")
 
     # Add the CLI options
-    cli_parser.add_option('-n', '--nocurr', action='store_true',
+    cli_parser.add_argument('-n', '--nocurr', action='store_true',
         help="suppress reporting the current weather conditions",
         default=False)
 
-    cli_parser.add_option('-d', '--delim', action='store', type='string',
+    cli_parser.add_argument('-d', '--delim', action='store',
         help="use the given string as a delimiter between the temperature and the conditions",
         default=" and ")
 
-    cli_parser.add_option('-f', '--forecast', action='store', type='int',
+    cli_parser.add_argument('-f', '--forecast', action='store', type=int,
         help="show the forecast for DAYS days",
         default=0)
 
-    cli_parser.add_option('-l', '--location', action='store_true',
+    cli_parser.add_argument('-l', '--location', action='store_true',
         help="print the location of the weather",
         default=False)
 
-    cli_parser.add_option('-m', '--metric', action='store_true',
+    cli_parser.add_argument('-m', '--metric', action='store_true',
         help="show the temperature in metric units (C)",
         default=False)
 
-    cli_parser.add_option('-v', '--verbose', action='store_true',
+    cli_parser.add_argument('-v', '--verbose', action='store_true',
         help="print the weather section headers",
         default=False)
 
-    cli_parser.add_option('-t', '--temperature', action="store_true",
+    cli_parser.add_argument('-t', '--temperature', action="store_true",
         help="print only the current temperature",
         default=False)
 
-    cli_parser.add_option('-c', '--conditions', action="store_true",
+    cli_parser.add_argument('-c', '--conditions', action="store_true",
         help="print only the current conditions",
         default=False)
 
-    cli_parser.add_option('-o', '--output', action='store',
+    cli_parser.add_argument('-o', '--output', action='store',
         help="print the weather conditions to a specified file name",
         default="")
 
@@ -223,20 +216,13 @@ def main(argv):
     # Get the options and arguments.
     opts, args = cli_parser.parse_args(argv)
 
-    # Check that an argument was passed.
-    if len(args) < 1:
-        cli_parser.error("Not enough arguments supplied.")
-
-    # Get the location code
-    location_code = args[0]
-
     # Limit the requested forecast days.
     if opts.forecast > DAYS_LIMIT or opts.forecast < 0:
         cli_parser.error("Days to forecast must be between 0 and %d"
                          % DAYS_LIMIT)
 
     # Get the weather.
-    weather = get_weather(location_code, opts)
+    weather = get_weather(args.location_code, opts)
 
     # Create the report.
     report = create_report(weather, opts)
@@ -253,7 +239,6 @@ def main(argv):
                     output_file.writelines(report)
             except IOError:
                 print "Unable to open file " + opts.output + " for output"
-
 
 if __name__ == "__main__":
     main(sys.argv[1:])
